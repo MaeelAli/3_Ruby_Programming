@@ -22,4 +22,15 @@ module Enumerable
 		return query
 	end
 
+	def my_all?
+		self.my_each do |item|
+			unless yield(item)
+				return false
+			end
+		end
+		true
+	end
+
+	
+
 end
