@@ -54,4 +54,9 @@ module Enumerable
 		end
 	end
 
+	def my_map
+		new_arr = []
+		self.to_a.each{|x| new_arr << yield(x)}
+		new_arr
+	end
 end
