@@ -44,6 +44,14 @@ module Enumerable
 		return !self.my_any?{|item| yield}
 	end
 
-
+	def my_count(args=nil)
+		if args
+			self.my_select {|item| item == args}.size
+		elsif block_given?
+			self.my_select {|item| yield(item)}.size
+		else
+			self.size
+		end
+	end
 
 end
