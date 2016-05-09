@@ -16,4 +16,10 @@ module Enumerable
 		end
 	end
 
+	def my_select
+		query = []
+		self.my_each {|item| query << item if yield(item)}
+		return query
+	end
+
 end
