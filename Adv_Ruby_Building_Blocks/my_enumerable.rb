@@ -40,6 +40,10 @@ module Enumerable
 		false
 	end
 
+	def my_none?
+		return !self.my_any?{|item| yield}
+	end
+
 
 
 end
