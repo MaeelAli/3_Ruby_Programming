@@ -3,8 +3,16 @@
 module Enumerable
 
 	def my_each
-		for index in (0...self.size)
-			yield self.to_a[index]
+		for item in self
+			yield item
+		end
+	end
+
+	def my_each_with_index
+		index = 0
+		for item in self
+			yield item, index
+			index += 1
 		end
 	end
 
