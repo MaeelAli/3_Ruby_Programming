@@ -54,10 +54,16 @@ module Enumerable
 		end
 	end
 
-	def my_map
+	def my_map(proc, &block)
 		new_arr = []
-		self.to_a.my_each{|x| new_arr << yield(x)}
-		new_arr
+		self.my_each do |x|
+			if block.nil?
+				new_arr << proc.call(x)
+			elsif !proc.nil?
+				tmp = proc.call(x)
+				new_arr <<block.call(tmp)
+			end
+			new_arr
 	end
 
 	def my_inject(initial=nil)
