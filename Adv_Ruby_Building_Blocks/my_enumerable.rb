@@ -56,7 +56,28 @@ module Enumerable
 
 	def my_map
 		new_arr = []
-		self.to_a.each{|x| new_arr << yield(x)}
+		self.to_a.my_each{|x| new_arr << yield(x)}
 		new_arr
 	end
+
+	def my_inject(initial=nil)
+		if initial
+			self.my_each {|x| initial = yield(initial, x)}
+		else
+			self.my_each_with_index do |x, y|
+				if y == 0
+					initial = self[y]
+					next
+				end
+				initial = yield(initial, x)
+			end
+		end
+		initial
+	end
+
+end
+
+
+def multiply_els(arr)
+	arr.my_inject{|start, n| start * n}
 end
